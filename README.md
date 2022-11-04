@@ -1,13 +1,12 @@
-# FLAPPY BIRD
-A flappy bird clone made in rust
+# Flappy bird
+A clone made in rust
 
 ![forthebadge made-with-go](https://forthebadge.com/images/badges/made-with-rust.svg)
 ![forthebadge made-with-go](https://forthebadge.com/images/badges/not-a-bug-a-feature.svg)
 
-![Size](https://img.shields.io/github/languages/code-size/paspielka/flappy_bird)
-![License](https://img.shields.io/github/license/paspielka/flappy_bird)
-![Contributors](https://img.shields.io/github/contributors/paspielka/flappy_bird)
-![Stars](https://img.shields.io/github/stars/paspielka/flappy_bird)
+<div>
+  <img width="400", height:"200", src="https://i.imgur.com/szoLVRn.png", alt ="showcase"/>
+</div>
 
 ## Table of contents
 * [General info](#general-info)
