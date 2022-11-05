@@ -60,11 +60,7 @@ impl Player {
         }
 
         // handle possible death cases
-        if self.pos.y > 500. {
-            *state = State::DEAD;
-            play_sound(self.manager.hit, PlaySoundParams{ looped: false, volume: 0.2 });
-        }
-        else if self.pos.y < 0. {
+        if self.pos.y > 500. || self.pos.y < 0.{
             *state = State::DEAD;
             play_sound(self.manager.hit, PlaySoundParams{ looped: false, volume: 0.2 });
         }
