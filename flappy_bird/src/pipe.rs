@@ -21,9 +21,9 @@ impl Pipe {
         arr.push(Pipe::new(Vec2 { x: screen_width(), y: screen_height()/2.+RandomRange::gen_range(100, 150) as f32*-3. }).await);
     }
 
-    pub async fn draw(arr: &mut Vec<Pipe>) {
+    pub async fn draw(arr: &mut [Pipe]) {
         for pipe in arr.iter() {
-            if pipe.pos.y < 250. {
+            if pipe.pos.y < 250.{
                 draw_texture(pipe.manager.pipe_reversed, pipe.pos.x, pipe.pos.y, WHITE);
             }
             else {
@@ -32,14 +32,10 @@ impl Pipe {
         }
     }
 
-    pub fn update(arr: &mut Vec<Pipe>) {
+    pub fn update(arr: &mut [Pipe]) {
         // move pipes
         for pipe in arr.iter_mut() {
             pipe.pos.x -= 2.;
-
-            if pipe.pos.x < 0. {
-                arr.remove(0); //fix this
-            }
         }
     }
 }
