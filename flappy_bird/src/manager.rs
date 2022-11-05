@@ -7,6 +7,8 @@ pub struct Manager {
     pub menu: Texture2D,
 
     pub bird: Texture2D,
+
+    pub pipe_reversed: Texture2D,
     pub pipe: Texture2D,
 
     // audio
@@ -23,6 +25,8 @@ impl Manager {
             menu: load_texture("assets/textures/menu.png").await.unwrap(),
 
             bird: load_texture("assets/textures/bird.png").await.unwrap(),
+
+            pipe_reversed: load_texture("assets/textures/pipe_reversed.png").await.unwrap(),
             pipe: load_texture("assets/textures/pipe.png").await.unwrap(),
 
             // audio
