@@ -1,6 +1,7 @@
 use macroquad::window::Conf;
 use macroquad::prelude::*;
 use manager::Manager;
+use pipe::Pipe;
 
 mod manager;
 mod pipe;
@@ -15,6 +16,8 @@ pub enum State {
 #[macroquad::main(window_config)]
 async fn main() {
     let manager = Manager::new().await;
+    let mut arr: Vec<Pipe> = vec![];
+    Pipe::spawn(&mut arr).await;
 
     let mut player = bird::Player::new().await;
     let mut game_state = State::MENU;
@@ -26,8 +29,13 @@ async fn main() {
         // manage game states
         match game_state {
             State::PLAYING => {
+                // player
                 player.update(&mut game_state);
                 player.draw();
+
+                // pipes
+                Pipe::draw(&mut arr).await;
+                Pipe::update(&mut arr)
             },
 
             State::MENU => {
