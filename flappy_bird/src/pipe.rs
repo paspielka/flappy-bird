@@ -23,6 +23,7 @@ impl Pipe {
 
     pub async fn draw(arr: &mut [Pipe]) {
         for pipe in arr.iter() {
+            // draw differently depending on rotation
             if pipe.pos.y < 250.{
                 draw_texture(pipe.manager.pipe_reversed, pipe.pos.x, pipe.pos.y, WHITE);
             }
