@@ -17,7 +17,9 @@ pub enum State {
 async fn main() {
     let manager = Manager::new().await;
     let mut arr: Vec<Pipe> = vec![];
-    Pipe::spawn(&mut arr).await;
+
+    let mut timer: u16 = 0;
+    let mut despawn: u16 = 0;
 
     let mut player = bird::Player::new().await;
     let mut game_state = State::MENU;
@@ -29,11 +31,27 @@ async fn main() {
         // manage game states
         match game_state {
             State::PLAYING => {
+                despawn += 1;
+                timer += 1;
+
                 // player
                 player.update(&mut game_state);
                 player.draw();
 
                 // pipes
+                if timer > 100 {
+                    timer = 0;
+                    Pipe::spawn(&mut arr).await;
+                }
+
+                if despawn > 300 {
+                    despawn = 0;
+                    // remove pipes out of bounds
+                    for _ in 0..2 {
+                        arr.remove(0);
+                    }
+                }
+
                 Pipe::draw(&mut arr).await;
                 Pipe::update(&mut arr)
             },
