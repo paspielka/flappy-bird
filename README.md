@@ -12,7 +12,7 @@ A clone made in rust
 * [Todo](#todo)
 
 ## Stats
-- Version: `1.0.0`
+- Version: `1.0.1`
 
 
 ## General info
