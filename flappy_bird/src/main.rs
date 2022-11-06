@@ -17,9 +17,10 @@ pub enum State {
 async fn main() {
     let manager = Manager::new().await;
     let mut arr: Vec<Pipe> = vec![];
+    
+    let pos = Vec2 { x: screen_width(), y: screen_height()/2. };
 
     let mut timer: u16 = 0;
-    let mut despawn: u16 = 0;
 
     let mut player = bird::Player::new().await;
     let mut game_state = State::MENU;
@@ -31,7 +32,6 @@ async fn main() {
         // manage game states
         match game_state {
             State::PLAYING => {
-                despawn += 1;
                 timer += 1;
 
                 // player
@@ -41,18 +41,11 @@ async fn main() {
                 // pipes
                 if timer > 100 {
                     timer = 0;
-                    Pipe::spawn(&mut arr).await;
+                    
+                    Pipe::spawn(&mut arr, pos).await;
                 }
 
-                if despawn > 300 {
-                    despawn = 0;
-                    // remove pipes out of bounds
-                    for _ in 0..2 {
-                        arr.remove(0);
-                    }
-                }
-
-                Pipe::draw(&mut arr).await;
+                Pipe::draw(&mut arr, manager.pipe_reversed, manager.pipe, &player.draw_hitbox(), &mut game_state, manager.hit).await;
                 Pipe::update(&mut arr)
             },
 
@@ -66,7 +59,9 @@ async fn main() {
 
             State::DEAD => {
                 draw_texture(manager.gameover, screen_width()/6., screen_height()/6., WHITE);
+                // reset pipe, player positions
                 player.reset();
+                arr.clear();
 
                 if is_key_pressed(KeyCode::Space) {
                     game_state = State::MENU;
@@ -74,6 +69,7 @@ async fn main() {
             }
         }
 
+        
         next_frame().await;
     }
 }
