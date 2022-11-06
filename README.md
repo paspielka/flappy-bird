@@ -20,10 +20,10 @@ A clone made in rust
 - [X] Tube Spawning
 - [X] Tube Despawning
 - [X] Score Tracking 
+- [X] Hit Boxes 
+- [X] Game States
 
 ## Todo
-- [ ] Hit-Boxes
-- [ ] Game States
 - [ ] Animations
 
 ## Contributing
