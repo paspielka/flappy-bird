@@ -31,6 +31,15 @@ impl Player {
         }
     }
 
+    pub fn draw_hitbox(&self) -> Rect {
+        Rect {
+            x: self.pos.x,
+            y: self.pos.y,
+            w: 30.,
+            h: 20.
+        }
+    }
+
     // draws every frame
     pub fn draw(&self) {
         draw_texture_ex(
